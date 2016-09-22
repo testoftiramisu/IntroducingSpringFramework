@@ -1,0 +1,19 @@
+group 'SpringHelloWorld'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = System.getProperty("mainClass")
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // http://mvnrepository.com/artifact/org.springframework/spring-context
+    compile group: 'org.springframework', name: 'spring-context', version: '4.2.6.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
