@@ -1,6 +1,5 @@
 package io.testoftiramisu;
 
-
 import io.testoftiramisu.model.Document;
 import io.testoftiramisu.model.Type;
 import io.testoftiramisu.service.SearchEngine;
@@ -14,15 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MyDocumentsTestWithSpring {
 
+    List<Document> foundedDocuments;
     private SearchEngine engine;
     private Type TypeFromSpringContext;
     private Type actualType;
-    List<Document> foundedDocuments;
-
 
     @Before
     public void setDocumentTypeWithSpringContext() throws Exception {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring/mydocuments-context.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring/mydocuments-context-old.xml");
         engine = context.getBean(SearchEngine.class);
         TypeFromSpringContext = context.getBean(Type.class);
 
