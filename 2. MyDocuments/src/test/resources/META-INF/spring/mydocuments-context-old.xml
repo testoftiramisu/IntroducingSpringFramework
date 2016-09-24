@@ -3,9 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="engine" class="io.testoftiramisu.service.MySearchEngine"/>
+    <bean id="engine" class="io.testoftiramisu.java.service.MySearchEngine"/>
 
-    <bean id="documentType" class="io.testoftiramisu.model.Type">
+    <bean id="documentType" class="io.testoftiramisu.java.model.Type">
         <property name="name" value="WEB"/>
         <property name="description" value="Web Link"/>
         <property name="extension" value=".url"/>

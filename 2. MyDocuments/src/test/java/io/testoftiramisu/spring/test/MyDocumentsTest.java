@@ -1,8 +1,8 @@
-package io.testoftiramisu.spring;
+package io.testoftiramisu.spring.test;
 
-import io.testoftiramisu.model.Document;
-import io.testoftiramisu.model.Type;
-import io.testoftiramisu.service.SearchEngine;
+import io.testoftiramisu.java.model.Document;
+import io.testoftiramisu.java.model.Type;
+import io.testoftiramisu.java.service.SearchEngine;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

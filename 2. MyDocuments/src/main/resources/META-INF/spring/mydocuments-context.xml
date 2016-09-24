@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="engine" class="io.testoftiramisu.service.SearchEngineService">
+    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService">
         <property name="documentDAO" ref="documentDAO"/>
     </bean>
 
@@ -14,16 +14,16 @@
         <property name="document4" ref="document4"/>
     </bean>
 
-    <bean id="document1" class="io.testoftiramisu.model.Document">
+    <bean id="document1" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Book Template"/>
         <property name="type" ref="pdfType"/>
         <property name="location" value="/Users/Tiramisu/Documents/tmp/Book Template.pdf"/>
     </bean>
 
-    <bean id="document2" class="io.testoftiramisu.model.Document">
+    <bean id="document2" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Sample Contract"/>
         <property name="type">
-            <bean id="pdfType" class="io.testoftiramisu.model.Type">
+            <bean id="pdfType" class="io.testoftiramisu.java.model.Type">
                 <property name="name" value="PDF"/>
                 <property name="description" value="Portable Document Format"/>
                 <property name="extension" value=".pdf"/>
@@ -32,31 +32,31 @@
         <property name="location" value="/Users/Tiramisu/Documents/tmp/Sample Contract.pdf"/>
     </bean>
 
-    <bean id="document3" class="io.testoftiramisu.model.Document">
+    <bean id="document3" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Clustering with RabbitMQ"/>
         <property name="type" ref="noteType"/>
         <property name="location" value="/Users/Tiramisu/Documents/tmp/Clustering with RabbitMQ.txt"/>
     </bean>
 
-    <bean id="document4" class="io.testoftiramisu.model.Document">
+    <bean id="document4" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Pro Spring Security Book"/>
         <property name="type" ref="webType"/>
         <property name="location" value="http://www.apress.com/9781430248187"/>
     </bean>
 
-    <bean id="webType" class="io.testoftiramisu.model.Type">
+    <bean id="webType" class="io.testoftiramisu.java.model.Type">
         <property name="name" value="WEB"/>
         <property name="description" value="Web Link"/>
         <property name="extension" value = ".url"/>
     </bean>
 
-    <bean id="pdfType" class="io.testoftiramisu.model.Type">
+    <bean id="pdfType" class="io.testoftiramisu.java.model.Type">
         <property name="name" value="PDF"/>
         <property name="description" value="Portable Document Format"/>
         <property name="extension" value=".pdf"/>
     </bean>
 
-    <bean id="noteType" class="io.testoftiramisu.model.Type">
+    <bean id="noteType" class="io.testoftiramisu.java.model.Type">
         <property name="name" value="NOTE"/>
         <property name="description" value="Text Notes"/>
         <property name="extension" value=".txt"/>

@@ -1,6 +1,6 @@
 package io.testoftiramisu.spring.data;
 
-import io.testoftiramisu.model.Document;
+import io.testoftiramisu.java.model.Document;
 
 public class DocumentRepository implements DocumentDAO {
 

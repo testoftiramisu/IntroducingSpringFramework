@@ -1,9 +1,9 @@
 package io.testoftiramisu.spring.annotated.service;
 
 import io.testoftiramisu.spring.data.DocumentDAO;
-import io.testoftiramisu.model.Document;
-import io.testoftiramisu.model.Type;
-import io.testoftiramisu.service.SearchEngine;
+import io.testoftiramisu.java.model.Document;
+import io.testoftiramisu.java.model.Type;
+import io.testoftiramisu.java.service.SearchEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

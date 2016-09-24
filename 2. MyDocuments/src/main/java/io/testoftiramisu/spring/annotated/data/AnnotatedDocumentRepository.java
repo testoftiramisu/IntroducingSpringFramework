@@ -1,8 +1,8 @@
 package io.testoftiramisu.spring.annotated.data;
 
+import io.testoftiramisu.java.model.Document;
+import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.spring.data.DocumentDAO;
-import io.testoftiramisu.model.Document;
-import io.testoftiramisu.model.Type;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class AnnotatedDocumentRepository implements DocumentDAO {
 
         type = new Type();
         type.setName("WEB");
-        type.setDescription("web link");
+        type.setDescription("Web Link");
         type.setExtension(".url");
 
         document = new Document();

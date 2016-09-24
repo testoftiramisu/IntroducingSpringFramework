@@ -1,7 +1,7 @@
-package io.testoftiramisu.service;
+package io.testoftiramisu.java.service;
 
-import io.testoftiramisu.model.Document;
-import io.testoftiramisu.model.Type;
+import io.testoftiramisu.java.model.Document;
+import io.testoftiramisu.java.model.Type;
 
 import java.util.List;
 

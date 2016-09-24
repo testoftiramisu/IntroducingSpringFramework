@@ -1,8 +1,9 @@
-package io.testoftiramisu.service;
+package io.testoftiramisu.spring.service;
 
+import io.testoftiramisu.java.service.SearchEngine;
 import io.testoftiramisu.spring.data.DocumentDAO;
-import io.testoftiramisu.model.Document;
-import io.testoftiramisu.model.Type;
+import io.testoftiramisu.java.model.Document;
+import io.testoftiramisu.java.model.Type;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package io.testoftiramisu.model;
+package io.testoftiramisu.java.model;
 
 import java.util.Date;
 

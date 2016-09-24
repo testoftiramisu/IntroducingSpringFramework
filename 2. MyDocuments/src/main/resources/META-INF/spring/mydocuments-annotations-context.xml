@@ -10,7 +10,7 @@
 
 <context:component-scan base-package="io.testoftiramisu.spring.annotated"/>
 
-    <bean id="documentType" class="io.testoftiramisu.model.Type">
+    <bean id="documentType" class="io.testoftiramisu.java.model.Type">
         <property name="name" value="WEB"/>
         <property name="description" value="Web Link"/>
         <property name="extension" value=".url"/>
