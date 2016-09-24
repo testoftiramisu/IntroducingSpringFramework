@@ -1,7 +1,4 @@
-/**
- *
- */
-package io.testoftiramisu.spring.test;
+package io.testoftiramisu.spring;
 
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
@@ -32,7 +29,7 @@ public class MyDocumentsAnnotatedTest {
     }
 
     @Test
-    public void testFinfByTypeWithAnnotations() {
+    public void testFindByTypeWithAnnotations() {
         documents = engine.findByType(webType);
         assertThat(documents).isNotNull();
         assertThat(documents).hasSize(1);

@@ -1,4 +1,4 @@
-package io.testoftiramisu.spring.test;
+package io.testoftiramisu.spring;
 
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;

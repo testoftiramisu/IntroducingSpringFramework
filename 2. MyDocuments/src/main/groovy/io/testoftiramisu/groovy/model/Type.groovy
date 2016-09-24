@@ -1,4 +1,4 @@
-package model
+package io.testoftiramisu.groovy.model
 
 class Type {
 	String name

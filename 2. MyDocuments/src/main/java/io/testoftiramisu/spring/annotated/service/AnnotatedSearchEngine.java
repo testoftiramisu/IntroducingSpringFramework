@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// Example of context configuration with help of Annotations
 @Service("engine")
 public class AnnotatedSearchEngine implements SearchEngine {
 

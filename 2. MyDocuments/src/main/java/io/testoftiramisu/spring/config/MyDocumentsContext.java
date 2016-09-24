@@ -1,11 +1,11 @@
 package io.testoftiramisu.spring.config;
 
 
+import io.testoftiramisu.spring.data.DocumentRepository;
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
 import io.testoftiramisu.spring.data.DocumentDAO;
-import io.testoftiramisu.spring.data.DocumentRepository;
 import io.testoftiramisu.spring.service.SearchEngineService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
+// Java bean Configuration example
 @Configuration
 public class MyDocumentsContext {
 
