@@ -1,5 +1,4 @@
-package io.testoftiramisu.spring.config;
-
+package io.testoftiramisu.config;
 
 import io.testoftiramisu.spring.data.DocumentRepository;
 import io.testoftiramisu.java.model.Document;
@@ -11,7 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 // Java bean Configuration example
@@ -85,10 +86,8 @@ public class MyDocumentsContext {
 
     private DocumentDAO documentDAO() {
         DocumentRepository documentDAO = new DocumentRepository();
-        documentDAO.setDocument1(getDocumentFromMap("doc1"));
-        documentDAO.setDocument2(getDocumentFromMap("doc2"));
-        documentDAO.setDocument3(getDocumentFromMap("doc3"));
-        documentDAO.setDocument4(getDocumentFromMap("doc4"));
+        List<Document> list = new ArrayList<>(documents.values());
+        documentDAO.setDocuments(list);
         return documentDAO;
     }
 

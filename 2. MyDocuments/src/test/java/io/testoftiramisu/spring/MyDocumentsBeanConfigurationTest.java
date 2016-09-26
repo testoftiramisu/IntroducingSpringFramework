@@ -1,9 +1,9 @@
 package io.testoftiramisu.spring;
 
+import io.testoftiramisu.config.MyDocumentsContext;
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
-import io.testoftiramisu.spring.config.MyDocumentsContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

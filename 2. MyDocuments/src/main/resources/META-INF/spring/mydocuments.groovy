@@ -12,7 +12,7 @@ beans {
     }
 
     documentDAO(DocumentRepository) {
-        document = [ref("doc1"), ref("doc2"), ref("doc3"), ref("doc4")]
+        documents = [ref("doc1"), ref("doc2"), ref("doc3"), ref("doc4")]
     }
 
     typeDAO(TypeDataRepository) {
@@ -22,19 +22,19 @@ beans {
     doc1(Document) {
         name = "Book Template"
         type = ref("pdfType")
-        location = "/Users/felipeg/Documents/Random/Book Template.pdf"
+        location = "/Users/Tiramisu/Documents/tmp/Book Template.pdf"
     }
 
     doc2(Document) {
         name = "Sample Contract"
         type = ref("pdfType")
-        location = "/Users/felipeg/Documents/Contracts/Sample Contract.pdf"
+        location = "/Users/Tiramisu/Documents/tmp/Sample Contract.pdf"
     }
 
     doc3(Document) {
         name = "Clustering with RabbitMQ"
         type = ref("noteType")
-        location = "/Users/felipeg/Documents/Random/Clustering with RabbitMQ.txt"
+        location = "/Users/Tiramisu/Documents/tmp/Clustering with RabbitMQ.txt"
     }
 
     doc4(Document) {
@@ -43,19 +43,19 @@ beans {
         location = "http://www.apress.com/9781430248187"
     }
 
-    webType(Type) {
+    webType(io.testoftiramisu.java.model.Type) {
         name = "WEB"
         description = "Web Link"
         extension = ".url"
     }
 
-    pdfType(Type) {
+    pdfType(io.testoftiramisu.java.model.Type) {
         name = "PDF"
         description = "Portable Document Format"
         extension = ".url"
     }
 
-    noteType(Type) {
+    noteType(io.testoftiramisu.java.model.Type) {
         name = "NOTE"
         description = "Text Notes"
         extension = ".txt"

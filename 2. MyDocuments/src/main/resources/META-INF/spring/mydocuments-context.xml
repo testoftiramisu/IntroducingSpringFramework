@@ -8,10 +8,14 @@
     </bean>
 
     <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository" scope="prototype">
-        <property name="document1" ref="document1"/>
-        <property name="document2" ref="document2"/>
-        <property name="document3" ref="document3"/>
-        <property name="document4" ref="document4"/>
+        <property name="documents">
+            <list>
+                <ref bean="document1"/>
+                <ref bean="document2"/>
+                <ref bean="document3"/>
+                <ref bean="document4"/>
+            </list>
+        </property>
     </bean>
 
     <bean id="document1" class="io.testoftiramisu.java.model.Document">
@@ -47,7 +51,7 @@
     <bean id="webType" class="io.testoftiramisu.java.model.Type">
         <property name="name" value="WEB"/>
         <property name="description" value="Web Link"/>
-        <property name="extension" value = ".url"/>
+        <property name="extension" value=".url"/>
     </bean>
 
     <bean id="pdfType" class="io.testoftiramisu.java.model.Type">
@@ -61,7 +65,6 @@
         <property name="description" value="Text Notes"/>
         <property name="extension" value=".txt"/>
     </bean>
-
 
 
 </beans>

@@ -1,48 +1,33 @@
 package io.testoftiramisu.spring.data;
 
 import io.testoftiramisu.java.model.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class DocumentRepository implements DocumentDAO {
 
-    private Document document1;
-    private Document document2;
-    private Document document3;
-    private Document document4;
+    private static final Logger log = LoggerFactory.getLogger(DocumentRepository.class);
 
-    public Document getDocument1() {
-        return document1;
+    private List<Document> documents = null;
+
+    public List<Document> getDocuments() {
+        return documents;
     }
 
-    public void setDocument1(Document document1) {
-        this.document1 = document1;
-    }
-
-    public Document getDocument2() {
-        return document2;
-    }
-
-    public void setDocument2(Document document2) {
-        this.document2 = document2;
-    }
-
-    public Document getDocument3() {
-        return document3;
-    }
-
-    public void setDocument3(Document document3) {
-        this.document3 = document3;
-    }
-
-    public Document getDocument4() {
-        return document4;
-    }
-
-    public void setDocument4(Document document4) {
-        this.document4 = document4;
+    public void setDocuments(List<Document> documents) {
+        this.documents = documents;
     }
 
     @Override
     public Document[] getAll() {
-        return new Document[]{document1, document2, document3, document4};
+        if(log.isDebugEnabled())
+            log.debug("Start <getAll> Params: ");
+        Document[] result = documents.toArray(new Document[documents.size()]);
+
+        if(log.isDebugEnabled())
+            log.debug("End <getAll> Result:" + result.toString());
+        return result;
     }
 }
