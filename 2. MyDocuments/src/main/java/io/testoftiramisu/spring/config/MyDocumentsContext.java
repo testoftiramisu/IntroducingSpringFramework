@@ -9,6 +9,7 @@ import io.testoftiramisu.spring.data.DocumentDAO;
 import io.testoftiramisu.spring.service.SearchEngineService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -75,6 +76,7 @@ public class MyDocumentsContext {
     }
 
     @Bean
+    @Scope("prototype")
     public SearchEngine engine() {
         SearchEngineService engine = new SearchEngineService();
         engine.setDocumentDAO(documentDAO());

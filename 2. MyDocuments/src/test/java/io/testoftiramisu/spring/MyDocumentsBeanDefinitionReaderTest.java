@@ -1,13 +1,12 @@
 package io.testoftiramisu.spring;
 
-import io.testoftiramisu.spring.config.MyDocumentsContext;
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericGroovyApplicationContext;
 
 import java.util.List;
 
@@ -15,14 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MyDocumentsBeanDefinitionReaderTest {
 
-    List<Document> documents;
+    private List<Document> documents;
     private ApplicationContext context;
     private SearchEngine engine;
     private Type webType;
 
     @Before
     public void setUp() throws Exception {
-        context = new AnnotationConfigApplicationContext(MyDocumentsContext.class);
+        context = new GenericGroovyApplicationContext("META-INF/spring/mydocuments.groovy");
         engine = context.getBean(SearchEngine.class);
         webType = context.getBean(Type.class);
     }

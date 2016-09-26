@@ -34,6 +34,10 @@ public class MyDocumentsTest {
         assertThat(actualType.getName()).isEqualTo(webType.getName());
         assertThat(actualType.getDescription()).isEqualTo(webType.getDescription());
         assertThat(actualType.getExtension()).isEqualTo(webType.getExtension());
+
+        // Because of using scope=" prototype" in mydocuments-context.xml
+        // Spring container will create a new instance of these SearchEngineService and DocumentRepository
+        // once the getBean method from the application context is called
         engine = context.getBean(SearchEngine.class);
 
     }
