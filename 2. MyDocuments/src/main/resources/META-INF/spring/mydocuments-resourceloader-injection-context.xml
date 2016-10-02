@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService" scope="prototype">
+
+    <context:component-scan base-package="io.testoftiramisu.spring.views"/>
+
+    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService">
         <property name="documentDAO" ref="documentDAO"/>
     </bean>
 
-    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository" scope="prototype">
+    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository">
         <property name="documents">
             <list>
-                <ref bean="document1"/>
-                <ref bean="document2"/>
-                <ref bean="document3"/>
-                <ref bean="document4"/>
+                <ref bean="doc1"/>
+                <ref bean="doc2"/>
+                <ref bean="doc3"/>
+                <ref bean="doc4"/>
             </list>
         </property>
     </bean>
 
-    <bean id="typeDAO" abstract="true" class="io.testoftiramisu.spring.data.TypeDataRepository">
+    <bean id="typeDAO" class="io.testoftiramisu.spring.data.TypeDataRepository">
         <property name="types">
             <map>
                 <entry key="webType" value-ref="webType"/>
@@ -28,23 +35,13 @@
         </property>
     </bean>
 
-    <bean id="newTypeDAO" class="io.testoftiramisu.spring.data.TypeDataRepository" parent="typeDAO">
-        <property name="types">
-            <map merge="true">
-                <entry key="pagesType" value-ref="pagesType"/>
-                <entry key="numbersType" value-ref="numbersType"/>
-                <entry key="keynoteType" value-ref="keynoteType"/>
-            </map>
-        </property>
-    </bean>
-
-    <bean id="document1" class="io.testoftiramisu.java.model.Document">
+    <bean id="doc1" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Book Template"/>
         <property name="type" ref="pdfType"/>
         <property name="location" value="/Users/Tiramisu/Documents/tmp/Book Template.pdf"/>
     </bean>
 
-    <bean id="document2" class="io.testoftiramisu.java.model.Document">
+    <bean id="doc2" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Sample Contract"/>
         <property name="type">
             <bean class="io.testoftiramisu.java.model.Type">
@@ -56,13 +53,13 @@
         <property name="location" value="/Users/Tiramisu/Documents/tmp/Sample Contract.pdf"/>
     </bean>
 
-    <bean id="document3" class="io.testoftiramisu.java.model.Document">
+    <bean id="doc3" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Clustering with RabbitMQ"/>
         <property name="type" ref="noteType"/>
         <property name="location" value="/Users/Tiramisu/Documents/tmp/Clustering with RabbitMQ.txt"/>
     </bean>
 
-    <bean id="document4" class="io.testoftiramisu.java.model.Document">
+    <bean id="doc4" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Pro Spring Security Book"/>
         <property name="type" ref="webType"/>
         <property name="location" value="http://www.apress.com/9781430248187"/>
@@ -84,24 +81,6 @@
         <property name="name" value="NOTE"/>
         <property name="description" value="Text Notes"/>
         <property name="extension" value=".txt"/>
-    </bean>
-
-    <bean id="keynoteType" class="io.testoftiramisu.java.model.Type">
-        <property name="name" value="KEYNOTE"/>
-        <property name="description" value="Keynote Presentation"/>
-        <property name="extension" value=".key"/>
-    </bean>
-
-    <bean id="pagesType" class="io.testoftiramisu.java.model.Type">
-        <property name="name" value="PAGES"/>
-        <property name="description" value="Pages Document"/>
-        <property name="extension" value=".pages"/>
-    </bean>
-
-    <bean id="numbersType" class="io.testoftiramisu.java.model.Type">
-        <property name="name" value="NUMBERS"/>
-        <property name="description" value="Numbers Spreadsheet"/>
-        <property name="extension" value=".numbers"/>
     </bean>
 
 </beans>

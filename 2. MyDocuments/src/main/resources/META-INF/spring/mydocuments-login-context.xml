@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService" scope="prototype">
+    <bean id="environmentProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:META-INF/data/env-dev.properties"/>
+    </bean>
+
+    <bean id="login" class="io.testoftiramisu.spring.service.LoginService">
+        <property name="username" value="${user.email}"/>
+        <property name="password" value="${user.password}"/>
+    </bean>
+
+    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService">
         <property name="documentDAO" ref="documentDAO"/>
     </bean>
 
     <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository">
-        <property name="documents" ref="docs"/>
+        <property name="documents">
+            <list>
+                <ref bean="doc1"/>
+                <ref bean="doc2"/>
+                <ref bean="doc3"/>
+                <ref bean="doc4"/>
+            </list>
+        </property>
     </bean>
-
-    <util:list id="docs">
-        <ref bean="doc1"/>
-        <ref bean="doc2"/>
-        <ref bean="doc3"/>
-        <ref bean="doc4"/>
-    </util:list>
 
     <bean id="typeDAO" class="io.testoftiramisu.spring.data.TypeDataRepository">
-        <property name="types" ref="types"/>
+        <property name="types">
+            <map>
+                <entry key="webType" value-ref="webType"/>
+                <entry key="pdfType" value-ref="pdfType"/>
+                <entry key="noteType" value-ref="noteType"/>
+            </map>
+        </property>
     </bean>
-
-    <util:map id="types">
-        <entry key="webType" value-ref="webType"/>
-        <entry key="pdfType" value-ref="pdfType"/>
-        <entry key="noteType" value-ref="noteType"/>
-    </util:map>
 
     <bean id="doc1" class="io.testoftiramisu.java.model.Document">
         <property name="name" value="Book Template"/>
@@ -76,5 +84,4 @@
         <property name="description" value="Text Notes"/>
         <property name="extension" value=".txt"/>
     </bean>
-
 </beans>
