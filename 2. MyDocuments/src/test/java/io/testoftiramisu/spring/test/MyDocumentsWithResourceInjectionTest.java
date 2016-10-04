@@ -1,4 +1,4 @@
-package io.testoftiramisu.spring;
+package io.testoftiramisu.spring.test;
 
 import io.testoftiramisu.spring.views.Menu;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package io.testoftiramisu.spring;
+package io.testoftiramisu.spring.test;
 
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
@@ -17,11 +17,11 @@ import java.util.Scanner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MyDocumentsTest {
+public class MyDocumentsTestWithJUnit {
     private SearchEngine engine;
     private Type webType;
     private ClassPathXmlApplicationContext context;
-    private static final Logger log = LoggerFactory.getLogger(MyDocumentsTest.class);
+    private static final Logger log = LoggerFactory.getLogger(MyDocumentsTestWithJUnit.class);
 
     @Before
     public void setUp() throws Exception {

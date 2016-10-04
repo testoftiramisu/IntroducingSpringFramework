@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+    <context:component-scan base-package="io.testoftiramisu.spring.service"/>
+
+    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService">
+        <property name="documentDAO" ref="documentDAO"/>
+    </bean>
+
+    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository">
+        <property name="documents">
+            <list>
+                <ref bean="doc1"/>
+                <ref bean="doc2"/>
+                <ref bean="doc3"/>
+                <ref bean="doc4"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="doc1" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Book Template"/>
+        <property name="type" ref="pdfType"/>
+        <property name="location" value="/Users/Tiramisu/Documents/tmp/Book Template.pdf"/>
+    </bean>
+
+    <bean id="doc2" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Sample Contract"/>
+        <property name="type">
+            <bean class="io.testoftiramisu.java.model.Type">
+                <property name="name" value="PDF"/>
+                <property name="description" value="Portable Document Format"/>
+                <property name="extension" value=".pdf"/>
+            </bean>
+        </property>
+        <property name="location" value="/Users/Tiramisu/Documents/tmp/Sample Contract.pdf"/>
+    </bean>
+
+    <bean id="doc3" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Clustering with RabbitMQ"/>
+        <property name="type" ref="noteType"/>
+        <property name="location" value="/Users/Tiramisu/Documents/tmp/Clustering with RabbitMQ.txt"/>
+    </bean>
+
+    <bean id="doc4" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Pro Spring Security Book"/>
+        <property name="type" ref="webType"/>
+        <property name="location" value="http://www.apress.com/9781430248187"/>
+    </bean>
+
+    <bean id="webType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="WEB"/>
+        <property name="description" value="Web Link"/>
+        <property name="extension" value=".url"/>
+    </bean>
+
+    <bean id="pdfType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="PDF"/>
+        <property name="description" value="Portable Document Format"/>
+        <property name="extension" value=".pdf"/>
+    </bean>
+
+    <bean id="noteType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="NOTE"/>
+        <property name="description" value="Text Notes"/>
+        <property name="extension" value=".txt"/>
+    </bean>
+
+</beans>

@@ -1,4 +1,4 @@
-package io.testoftiramisu.spring;
+package io.testoftiramisu.spring.test;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -43,19 +43,19 @@ beans {
         location = "http://www.apress.com/9781430248187"
     }
 
-    webType(io.testoftiramisu.java.model.Type) {
+    webType(Type) {
         name = "WEB"
         description = "Web Link"
         extension = ".url"
     }
 
-    pdfType(io.testoftiramisu.java.model.Type) {
+    pdfType(Type) {
         name = "PDF"
         description = "Portable Document Format"
         extension = ".url"
     }
 
-    noteType(io.testoftiramisu.java.model.Type) {
+    noteType(Type) {
         name = "NOTE"
         description = "Text Notes"
         extension = ".txt"

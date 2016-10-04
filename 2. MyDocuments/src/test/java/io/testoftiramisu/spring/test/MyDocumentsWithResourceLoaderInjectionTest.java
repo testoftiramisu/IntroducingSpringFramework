@@ -1,6 +1,5 @@
-package io.testoftiramisu.spring;
+package io.testoftiramisu.spring.test;
 
-import io.testoftiramisu.spring.views.Menu;
 import io.testoftiramisu.spring.views.ResourceLoaderMenu;
 import org.junit.Before;
 import org.junit.Test;
