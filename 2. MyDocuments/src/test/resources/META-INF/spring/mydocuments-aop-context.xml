@@ -5,6 +5,8 @@
 
     <!-- AOP -->
     <bean id="beforeLogging" class="io.testoftiramisu.spring.aop.BeforeLoggingModule"/>
+    <bean id="afterLogging" class = "io.testoftiramisu.spring.aop.AfterLoggingModule"/>
+    <bean id="aroundLogging" class="io.testoftiramisu.spring.aop.AroundLoggingModule"/>
 
     <!-- AOP Proxy -->
     <bean id="engineProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
@@ -13,6 +15,8 @@
         <property name="interceptorNames">
             <list>
                 <value>beforeLogging</value>
+                <value>afterLogging</value>
+                <value>aroundLogging</value>
             </list>
         </property>
     </bean>

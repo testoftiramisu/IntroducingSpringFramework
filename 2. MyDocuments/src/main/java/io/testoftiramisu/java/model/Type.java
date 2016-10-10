@@ -28,4 +28,14 @@ public class Type {
     public void setExtension(String extencion) {
         this.extension = extencion;
     }
+
+    public String toString() {
+        return "Type(" + "name: " +
+                name +
+                ", description: " +
+                description +
+                ", extension: " +
+                extension +
+                ")";
+    }
 }

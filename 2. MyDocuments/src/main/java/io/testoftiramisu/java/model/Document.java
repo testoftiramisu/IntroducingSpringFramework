@@ -48,4 +48,14 @@ public class Document {
     public void setModified(Date modified) {
         this.modified = modified;
     }
+
+    public String toString(){
+        return "Documents(" + "name: " +
+                name +
+                ", type: " +
+                type +
+                ", location: " +
+                location +
+                ")";
+    }
 }
