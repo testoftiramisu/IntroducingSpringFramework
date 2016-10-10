@@ -21,4 +21,9 @@ public class FileSearchEngineService implements SearchEngine {
     public List<Document> listAll() {
         throw new UnsupportedOperationException("QA Environment. Not yet implemented operation.");
     }
+
+    @Override
+    public List<Document> findByLocation(String location) {
+        throw new UnsupportedOperationException("find location not yet implemented");
+    }
 }

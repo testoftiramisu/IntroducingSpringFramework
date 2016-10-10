@@ -1,9 +1,9 @@
 package io.testoftiramisu.spring.annotated.service;
 
-import io.testoftiramisu.spring.data.DocumentDAO;
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
+import io.testoftiramisu.spring.data.DocumentDAO;
 import io.testoftiramisu.spring.service.SearchEngineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,5 +45,10 @@ public class AnnotatedSearchEngine implements SearchEngine {
     @Override
     public List<Document> listAll() {
         return Arrays.asList(documentDAO.getAll());
+    }
+
+    @Override
+    public List<Document> findByLocation(String location) {
+        throw new UnsupportedOperationException("find location not yet implemented");
     }
 }

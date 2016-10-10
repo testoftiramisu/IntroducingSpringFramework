@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- AOP -->
+    <bean id="beforeLogging" class="io.testoftiramisu.spring.aop.BeforeLoggingModule"/>
+
+    <!-- AOP Proxy -->
+    <bean id="engineProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyTargetClass" value="true"/>
+        <property name="target" ref="engine"/>
+        <property name="interceptorNames">
+            <list>
+                <value>beforeLogging</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Service -->
+    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService">
+        <property name="documentDAO" ref="documentDAO"/>
+    </bean>
+
+    <!-- Data -->
+    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository">
+        <property name="documents">
+            <list>
+                <ref bean="document1"/>
+                <ref bean="document2"/>
+                <ref bean="document3"/>
+                <ref bean="document4"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="typeDAO" class="io.testoftiramisu.spring.data.TypeDataRepository">
+        <property name="types">
+            <map>
+                <entry key="webType" value-ref="webType"/>
+                <entry key="pdfType" value-ref="pdfType"/>
+                <entry key="noteType" value-ref="noteType"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="document1" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Book Template"/>
+        <property name="type" ref="pdfType"/>
+        <property name="location" value="/Users/Tiramisu/Documents/tmp/Book Template.pdf"/>
+    </bean>
+
+    <bean id="document2" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Sample Contract"/>
+        <property name="type">
+            <bean class="io.testoftiramisu.java.model.Type">
+                <property name="name" value="PDF"/>
+                <property name="description" value="Portable Document Format"/>
+                <property name="extension" value=".pdf"/>
+            </bean>
+        </property>
+        <property name="location" value="/Users/Tiramisu/Documents/tmp/Sample Contract.pdf"/>
+    </bean>
+
+    <bean id="document3" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Clustering with RabbitMQ"/>
+        <property name="type" ref="noteType"/>
+        <property name="location" value="/Users/Tiramisu/Documents/tmp/Clustering with RabbitMQ.txt"/>
+    </bean>
+
+    <bean id="document4" class="io.testoftiramisu.java.model.Document">
+        <property name="name" value="Pro Spring Security Book"/>
+        <property name="type" ref="webType"/>
+        <property name="location" value="http://www.apress.com/9781430248187"/>
+    </bean>
+
+    <bean id="webType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="WEB"/>
+        <property name="description" value="Web Link"/>
+        <property name="extension" value=".url"/>
+    </bean>
+
+    <bean id="pdfType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="PDF"/>
+        <property name="description" value="Portable Document Format"/>
+        <property name="extension" value=".pdf"/>
+    </bean>
+
+    <bean id="noteType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="NOTE"/>
+        <property name="description" value="Text Notes"/>
+        <property name="extension" value=".txt"/>
+    </bean>
+
+    <bean id="keynoteType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="KEYNOTE"/>
+        <property name="description" value="Keynote Presentation"/>
+        <property name="extension" value=".key"/>
+    </bean>
+
+    <bean id="pagesType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="PAGES"/>
+        <property name="description" value="Pages Document"/>
+        <property name="extension" value=".pages"/>
+    </bean>
+
+    <bean id="numbersType" class="io.testoftiramisu.java.model.Type">
+        <property name="name" value="NUMBERS"/>
+        <property name="description" value="Numbers Spreadsheet"/>
+        <property name="extension" value=".numbers"/>
+    </bean>
+
+</beans>
