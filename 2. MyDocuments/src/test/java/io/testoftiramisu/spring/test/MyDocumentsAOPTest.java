@@ -58,4 +58,23 @@ public class MyDocumentsAOPTest {
             log.error(ex.getMessage());
         }
     }
+
+    @Test
+    public void findByTypeUsingAOPCaching(){
+        log.debug("Testing Caching module: ");
+
+        List<Document> documents = engineProxy.findByType(webType);
+        assertThat(documents).isNotNull();
+        int count = documents.size();
+
+        log.debug("It should now be cashed!");
+        documents = engineProxy.findByType(webType);
+        assertThat(documents).isNotNull();
+        assertThat(documents).hasSize(count);
+
+        log.debug("It should now be cashed!");
+        documents = engineProxy.findByType(webType);
+        assertThat(documents).isNotNull();
+        assertThat(documents).hasSize(count);
+    }
 }

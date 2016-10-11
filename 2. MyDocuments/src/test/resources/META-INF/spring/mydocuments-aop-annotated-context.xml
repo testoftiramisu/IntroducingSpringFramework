@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+    <context:component-scan base-package="io.testoftiramisu.spring.annotated.aop"/>
 
     <!-- AOP -->
-    <bean id="beforeLogging" class="io.testoftiramisu.spring.aop.BeforeLoggingModule"/>
-    <bean id="afterLogging" class = "io.testoftiramisu.spring.aop.AfterLoggingModule"/>
-    <bean id="aroundLogging" class="io.testoftiramisu.spring.aop.AroundLoggingModule"/>
-    <bean id="throwsLogging" class="io.testoftiramisu.spring.aop.ThrowsLoggingModule"/>
-    <bean id="caching" class="io.testoftiramisu.spring.aop.CachingModule"/>
+    <aop:aspectj-autoproxy/>
 
-    <!-- AOP Proxy -->
-    <bean id="engineProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="proxyTargetClass" value="true"/>
-        <property name="target" ref="engine"/>
-        <property name="interceptorNames">
-            <list>
-                <value>beforeLogging</value>
-                <value>afterLogging</value>
-                <value>aroundLogging</value>
-                <value>throwsLogging</value>
-                <value>caching</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- Service -->
-    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService">
+    <bean id="engine" class="io.testoftiramisu.spring.service.SearchEngineService" scope="prototype">
         <property name="documentDAO" ref="documentDAO"/>
     </bean>
 
-    <!-- Data -->
-    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository">
+    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository" scope="prototype">
         <property name="documents">
             <list>
                 <ref bean="document1"/>
@@ -39,16 +27,6 @@
                 <ref bean="document3"/>
                 <ref bean="document4"/>
             </list>
-        </property>
-    </bean>
-
-    <bean id="typeDAO" class="io.testoftiramisu.spring.data.TypeDataRepository">
-        <property name="types">
-            <map>
-                <entry key="webType" value-ref="webType"/>
-                <entry key="pdfType" value-ref="pdfType"/>
-                <entry key="noteType" value-ref="noteType"/>
-            </map>
         </property>
     </bean>
 
@@ -98,24 +76,6 @@
         <property name="name" value="NOTE"/>
         <property name="description" value="Text Notes"/>
         <property name="extension" value=".txt"/>
-    </bean>
-
-    <bean id="keynoteType" class="io.testoftiramisu.java.model.Type">
-        <property name="name" value="KEYNOTE"/>
-        <property name="description" value="Keynote Presentation"/>
-        <property name="extension" value=".key"/>
-    </bean>
-
-    <bean id="pagesType" class="io.testoftiramisu.java.model.Type">
-        <property name="name" value="PAGES"/>
-        <property name="description" value="Pages Document"/>
-        <property name="extension" value=".pages"/>
-    </bean>
-
-    <bean id="numbersType" class="io.testoftiramisu.java.model.Type">
-        <property name="name" value="NUMBERS"/>
-        <property name="description" value="Numbers Spreadsheet"/>
-        <property name="extension" value=".numbers"/>
     </bean>
 
 </beans>
