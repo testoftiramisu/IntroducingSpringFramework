@@ -6,6 +6,14 @@ public class Type {
     private String description;
     private String extension;
 
+    public Type() {
+    }
+
+    public Type(String typeId, String extension) {
+        this.typeId = typeId;
+        this.extension = extension;
+    }
+
     public String getTypeId() {
         return typeId;
     }
