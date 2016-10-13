@@ -3,14 +3,32 @@ package io.testoftiramisu.java.model;
 import java.util.Date;
 
 public class Document {
+    private String documentId;
     private String name;
     private Type type;
     private String location;
     private Date created;
     private Date modified;
+    private String Description;
 
     public String getName() {
         return name;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 
     public void setName(String name) {
@@ -49,13 +67,14 @@ public class Document {
         this.modified = modified;
     }
 
-    public String toString(){
+    public String toString() {
         return "Documents(" + "name: " +
                 name +
+                " id: " +
+                documentId +
                 ", type: " +
                 type +
                 ", location: " +
-                location +
-                ")";
+                location + ")";
     }
 }

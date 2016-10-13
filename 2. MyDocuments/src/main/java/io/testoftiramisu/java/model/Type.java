@@ -1,9 +1,18 @@
 package io.testoftiramisu.java.model;
 
 public class Type {
+    private String typeId;
     private String name;
     private String description;
     private String extension;
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
 
     public String getName() {
         return name;
@@ -32,6 +41,8 @@ public class Type {
     public String toString() {
         return "Type(" + "name: " +
                 name +
+                " id: " +
+                typeId +
                 ", description: " +
                 description +
                 ", extension: " +

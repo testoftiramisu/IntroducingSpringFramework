@@ -6,14 +6,15 @@ import io.testoftiramisu.spring.data.DocumentDAO;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
 public class AnnotatedDocumentRepository implements DocumentDAO {
 
     @Override
-    public Document[] getAll() {
-        return storage();
+    public List<Document> getAll() {
+        return Arrays.asList(storage());
     }
 
     private Document[] storage() {

@@ -2,6 +2,8 @@ package io.testoftiramisu.spring.data;
 
 import io.testoftiramisu.java.model.Document;
 
+import java.util.List;
+
 public interface DocumentDAO {
-    Document[] getAll();
+    List<Document> getAll();
 }

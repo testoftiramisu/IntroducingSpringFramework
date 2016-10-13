@@ -1,16 +1,23 @@
 package io.testoftiramisu.spring.data;
 
 import io.testoftiramisu.java.model.Document;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.testoftiramisu.java.model.Type;
 
-import java.util.Arrays;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DocumentRepository implements DocumentDAO {
-
-    private static final Logger log = LoggerFactory.getLogger(DocumentRepository.class);
+    private DataSource dataSource;
     private List<Document> documents = null;
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public List<Document> getDocuments() {
         return documents;
@@ -20,14 +27,39 @@ public class DocumentRepository implements DocumentDAO {
         this.documents = documents;
     }
 
-    @Override
-    public Document[] getAll() {
-        if (log.isDebugEnabled())
-            log.debug("Start <getAll> Params: ");
-        Document[] result = documents.toArray(new Document[documents.size()]);
+    public List<Document> getAll() {
+        List<Document> result = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Document document = null;
+        Type type = null;
 
-        if (log.isDebugEnabled())
-            log.debug("End <getAll> Result:" + Arrays.toString(result));
+        try {
+            connection = dataSource.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from documents");
+            while (resultSet.next()) {
+                document = new Document();
+                document.setDocumentId(resultSet.getString("documentId"));
+                document.setName(resultSet.getString("name"));
+                document.setLocation(resultSet.getString("location"));
+                document.setCreated(resultSet.getDate("created"));
+                document.setModified(resultSet.getDate("modified"));
+                document.setDescription(resultSet.getString("description"));
+                result.add(document);
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            if (null != connection) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+
+                }
+            }
+        }
         return result;
     }
 }
