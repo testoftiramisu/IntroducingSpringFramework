@@ -9,8 +9,8 @@ public class Type {
     public Type() {
     }
 
-    public Type(String typeId, String extension) {
-        this.typeId = typeId;
+    public Type(String name, String extension) {
+        this.name = name;
         this.extension = extension;
     }
 
