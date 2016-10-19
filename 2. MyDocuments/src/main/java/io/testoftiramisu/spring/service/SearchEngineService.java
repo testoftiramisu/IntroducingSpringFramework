@@ -5,7 +5,6 @@ import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
 import io.testoftiramisu.spring.data.DocumentDAO;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

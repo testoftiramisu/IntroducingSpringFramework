@@ -3,7 +3,6 @@ package io.testoftiramisu.spring.annotated.data;
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.spring.data.DocumentDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -22,7 +21,7 @@ public class AnnotatedDocumentRepository implements DocumentDAO {
             "t.name as type_name, t.description as type_desc," +
             "t.extension from documents d join types t on d.typeId = t.typeId";
 
-    @Autowired
+    //@Autowired
     private DataSource dataSource;
 
     @Override
@@ -34,47 +33,46 @@ public class AnnotatedDocumentRepository implements DocumentDAO {
         Document document = null;
         Type type = null;
 
-        try {
-            connection = dataSource.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(queryAll);
-            while (resultSet.next()) {
-                document = new Document();
-                document.setDocumentId(resultSet.getString("documentId"));
-                document.setName(resultSet.getString("name"));
-                document.setLocation(resultSet.getString("location"));
-                document.setCreated(resultSet.getDate("created"));
-                document.setModified(resultSet.getDate("modified"));
-                document.setDescription("dec_desc");
-                type = new Type();
-                type.setTypeId(resultSet.getString("typeId"));
-                type.setName(resultSet.getString("type_name"));
-                type.setDescription(resultSet.getString("type_desc"));
-                type.setExtension(resultSet.getString("extension"));
-                document.setType(type);
+        if (null != dataSource) {
+            try {
+                connection = dataSource.getConnection();
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(queryAll);
+                while (resultSet.next()) {
+                    document = new Document();
+                    document.setDocumentId(resultSet.getString("documentId"));
+                    document.setName(resultSet.getString("name"));
+                    document.setLocation(resultSet.getString("location"));
+                    document.setCreated(resultSet.getDate("created"));
+                    document.setModified(resultSet.getDate("modified"));
+                    document.setDescription("dec_desc");
+                    type = new Type();
+                    type.setTypeId(resultSet.getString("typeId"));
+                    type.setName(resultSet.getString("type_name"));
+                    type.setDescription(resultSet.getString("type_desc"));
+                    type.setExtension(resultSet.getString("extension"));
+                    document.setType(type);
 
-                result.add(document);
-            }
+                    result.add(document);
+                }
 
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        } finally {
-            if (null != connection) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } finally {
+                if (null != connection) {
+                    try {
+                        connection.close();
+                    } catch (SQLException ex) {
 
+                    }
                 }
             }
+            return result;
+        } else {
+            return Arrays.asList(storage());
         }
-        return result;
 
     }
-
-
-//    public List<Document> getAll() {
-//        return Arrays.asList(storage());
-//    }
 
     private Document[] storage() {
         List<Document> result = new ArrayList<>();

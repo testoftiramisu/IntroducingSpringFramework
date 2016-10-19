@@ -38,8 +38,8 @@ public class MyDocumentsJdbcTest {
         assertThat(documents).hasSize(1);
 
         assertThat(documents.get(0).getType().getName()).isEqualTo(webType.getName());
-        assertThat(documents.get(0).getType().getDescription()).isEqualTo(webType.getDescription());
         assertThat(documents.get(0).getType().getExtension()).isEqualTo(webType.getExtension());
+        log.debug("Found WEB Document: " + documents.get(0));
 
     }
 

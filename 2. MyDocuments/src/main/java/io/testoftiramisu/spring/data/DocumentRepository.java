@@ -2,7 +2,8 @@ package io.testoftiramisu.spring.data;
 
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
-import org.springframework.core.io.InputStreamResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 
 import javax.sql.DataSource;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DocumentRepository implements DocumentDAO {
+    private static final Logger log = LoggerFactory.getLogger(DocumentRepository.class);
     private DataSource dataSource;
     private List<Document> documents = null;
     private Resource schema;
@@ -117,37 +119,42 @@ public class DocumentRepository implements DocumentDAO {
         Document document = null;
         Type type = null;
 
-        try {
-            connection = dataSource.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from documents");
-            while (resultSet.next()) {
-                document = new Document();
-                document.setDocumentId(resultSet.getString("documentId"));
-                document.setName(resultSet.getString("name"));
-                document.setLocation(resultSet.getString("location"));
-                document.setCreated(resultSet.getDate("created"));
-                document.setModified(resultSet.getDate("modified"));
-                document.setDescription(resultSet.getString("description"));
-                type = new Type();
-                type.setTypeId(resultSet.getString("typeId"));
-                type.setName(resultSet.getString("type_name"));
-                type.setDescription(resultSet.getString("type_desc"));
-                type.setExtension(resultSet.getString("extension"));
-                document.setType(type);
-                result.add(document);
-            }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        } finally {
-            if (null != connection) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
+        if (documents == null) {
 
+            try {
+                connection = dataSource.getConnection();
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(queryAll);
+                while (resultSet.next()) {
+                    document = new Document();
+                    document.setDocumentId(resultSet.getString("documentId"));
+                    document.setName(resultSet.getString("name"));
+                    document.setLocation(resultSet.getString("location"));
+                    document.setCreated(resultSet.getDate("created"));
+                    document.setModified(resultSet.getDate("modified"));
+                    document.setDescription(resultSet.getString("doc_desc"));
+                    type = new Type();
+                    type.setTypeId(resultSet.getString("typeId"));
+                    type.setName(resultSet.getString("type_name"));
+                    type.setDescription(resultSet.getString("type_desc"));
+                    type.setExtension(resultSet.getString("extension"));
+                    document.setType(type);
+                    result.add(document);
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            } finally {
+                if (null != connection) {
+                    try {
+                        connection.close();
+                    } catch (SQLException ex) {
+
+                    }
                 }
             }
+            return result;
+        } else {
+            return documents;
         }
-        return result;
     }
 }
