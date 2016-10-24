@@ -71,7 +71,6 @@ public class AnnotatedDocumentRepository implements DocumentDAO {
         } else {
             return Arrays.asList(storage());
         }
-
     }
 
     private Document[] storage() {
@@ -118,6 +117,4 @@ public class AnnotatedDocumentRepository implements DocumentDAO {
 
         return result.toArray(new Document[result.size()]);
     }
-
-
 }
