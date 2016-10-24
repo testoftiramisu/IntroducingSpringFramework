@@ -21,7 +21,7 @@
         <property name="documentDAO" ref="documentDAO"/>
     </bean>
 
-    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentRepository" init-method="initialize">
+    <bean id="documentDAO" class="io.testoftiramisu.spring.data.DocumentJdbcRepository" init-method="initialize">
         <property name="dataSource" ref="dataSource"/>
         <property name="schema" value="classpath:META-INF/data/schema.sql"/>
         <property name="data" value="classpath:META-INF/data/data.sql"/>

@@ -19,8 +19,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:META-INF/spring/mydocuments-jdbc-template-context.xml")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class MyDocumentsJDBCTemplateTest {
-    private static final Logger log = LoggerFactory.getLogger(MyDocumentsJDBCTemplateTest.class);
+public class MyDocumentsJdbcTemplateTest {
+    private static final Logger log = LoggerFactory.getLogger(MyDocumentsJdbcTemplateTest.class);
 
     @Autowired
     private SearchEngine engine;
