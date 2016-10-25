@@ -7,6 +7,9 @@ apply plugin: 'groovy'
 apply plugin: 'jetty'
 
 sourceCompatibility = 1.8
+httpPort = 8888
+stopPort = 9090
+stopKey = "stopKey"
 
 repositories {
     mavenCentral()

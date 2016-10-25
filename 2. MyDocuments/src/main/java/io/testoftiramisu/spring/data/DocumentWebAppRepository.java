@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository("documentDAO")
+@Repository("documentWebDAO")
 public class DocumentWebAppRepository implements DocumentDAO {
 
     @Autowired
