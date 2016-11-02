@@ -54,11 +54,11 @@ dependencies {
     // https://mvnrepository.com/artifact/javax.servlet/jstl
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
 
-    // https://mvnrepository.com/artifact/javax.jms/javax.jms-api
     compile group: 'javax.jms', name: 'javax.jms-api', version: '2.0.1'
-
-    // https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream
     compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.9'
+    compile group: 'org.apache.activemq', name: 'activemq-core', version: '5.7.0'
+    compile group: 'org.springframework', name: 'spring-jms', version: '4.3.3.RELEASE'
+
 }
 
 test {

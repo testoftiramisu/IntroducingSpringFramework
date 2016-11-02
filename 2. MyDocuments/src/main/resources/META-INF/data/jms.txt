@@ -4,7 +4,7 @@
   <type>
     <typeId>4980d2e4-a424-4ff4-a0b2-476039682f43</typeId>
     <name>WEB</name>
-    <desc>Web Link</desc>
+    <description>Web Link</description>
     <extension>.url</extension>
   </type>
   <location>http://www.apress.com</location>

@@ -141,4 +141,8 @@ public class DocumentJdbcRepository implements DocumentDAO {
         return result;
     }
 
+    @Override
+    public void save(Document document) {
+
+    }
 }

@@ -14,7 +14,7 @@
     <meta charset="UTF-8"></meta>
     <title>${title}</title>
 </head>
-<body style="font-family: verdana;">
+<body style="font-family: Helvetica;">
 <h2>${subtitle}</h2>
 <c:if test="${not empty docs}">
     <table>

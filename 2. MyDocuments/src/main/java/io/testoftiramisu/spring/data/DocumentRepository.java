@@ -27,4 +27,9 @@ public class DocumentRepository implements DocumentDAO {
         }
         return getDocuments();
     }
+
+    @Override
+    public void save(Document document) {
+
+    }
 }

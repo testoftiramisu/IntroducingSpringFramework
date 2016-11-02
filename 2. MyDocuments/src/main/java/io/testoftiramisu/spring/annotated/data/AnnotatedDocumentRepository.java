@@ -117,4 +117,9 @@ public class AnnotatedDocumentRepository implements DocumentDAO {
 
         return result.toArray(new Document[result.size()]);
     }
+
+    @Override
+    public void save(Document document) {
+
+    }
 }

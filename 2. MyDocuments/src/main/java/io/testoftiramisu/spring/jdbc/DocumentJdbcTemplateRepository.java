@@ -25,4 +25,9 @@ public class DocumentJdbcTemplateRepository implements DocumentDAO {
     public void setQuery(String query) {
         this.query = query;
     }
+
+    @Override
+    public void save(Document document) {
+
+    }
 }

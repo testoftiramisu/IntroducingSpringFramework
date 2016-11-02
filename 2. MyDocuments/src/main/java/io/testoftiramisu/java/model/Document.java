@@ -9,7 +9,7 @@ public class Document {
     private String location;
     private Date created;
     private Date modified;
-    private String Description;
+    private String description;
 
     public String getName() {
         return name;
@@ -24,11 +24,11 @@ public class Document {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public void setName(String name) {
