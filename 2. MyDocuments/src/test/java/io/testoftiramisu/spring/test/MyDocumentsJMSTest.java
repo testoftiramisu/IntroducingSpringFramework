@@ -2,8 +2,11 @@ package io.testoftiramisu.spring.test;
 
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
+import io.testoftiramisu.spring.jms.JMSProducer;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +17,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:META-INF/spring/mydocuments-jms-context.xml")
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MyDocumentsJMSTest {
     private static final Logger log = LoggerFactory.getLogger(MyDocumentsJMSTest.class);
 
     private static final int MAX_ALL_DOCS = 5;
     private static final int MAX_WEB_DOCS = 2;
-
+    @Autowired
+    JMSProducer jmsProducer;
     @Autowired
     private SearchEngine engine;
 
+    @Test
+    public void testSpringJMS1Producer() {
+        log.debug("Testing Spring JMS producer...");
+        jmsProducer.send();
+    }
 
     @Test
-    public void testSpringJMS() throws InterruptedException {
+    public void testSpringJMS2Consumer() throws InterruptedException {
         log.debug("Testing Spring JMS Listener/Insert...");
         assertThat(engine).isNotNull();
 

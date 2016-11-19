@@ -49,21 +49,19 @@ public class DocumentWebAppRepository implements DocumentDAO {
         try {
             JdbcTemplate template = new JdbcTemplate(dataSource);
             if (null == findById(document.getDocumentId())) {
-                template.update(insert, new Object[]{
-                        document.getDocumentId(),
-                        document.getName(), document.getLocation(),
-                        document.getDescription(),
-                        document.getType().getTypeId(),
-                        document.getCreated(), document.getModified()
-                });
-            } else {
-                template.update(update, new Object[]{
+                template.update(insert, document.getDocumentId(),
                         document.getName(),
                         document.getLocation(),
                         document.getDescription(),
-                        document.getType().getTypeId(), new Date(),
-                        document.getDocumentId()
-                });
+                        document.getType().getTypeId(),
+                        document.getCreated(), document.getModified());
+            } else {
+                template.update(update, document.getName(),
+                        document.getLocation(),
+                        document.getDescription(),
+                        document.getType().getTypeId(),
+                        new Date(),
+                        document.getDocumentId());
             }
         } catch (Exception ex) {
             ex.printStackTrace();
