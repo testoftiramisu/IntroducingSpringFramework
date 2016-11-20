@@ -1,7 +1,9 @@
 package io.testoftiramisu.spring.test;
 
+import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
+import io.testoftiramisu.spring.amqp.RabbitMQProducer;
 import io.testoftiramisu.spring.jms.JMSProducer;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -23,6 +25,8 @@ public class MyDocumentsJMSTest {
 
     private static final int MAX_ALL_DOCS = 5;
     private static final int MAX_WEB_DOCS = 2;
+    private static final String DOCUMENT_ID = "df569fa4-a513-4252-9810-818cade184ca";
+
     @Autowired
     JMSProducer jmsProducer;
     @Autowired
@@ -48,4 +52,18 @@ public class MyDocumentsJMSTest {
         Type type = new Type("WEB", ".url");
         assertThat(engine.findByType(type)).hasSize(MAX_WEB_DOCS);
     }
+
+    @Autowired
+    RabbitMQProducer rabbitMQProducer;
+
+    @Test
+    public void testSpringRabbitMQ() {
+        log.debug("Testing RabbitMQ producer...");
+        assertThat(rabbitMQProducer).isNotNull();
+
+        Document document = engine.findById(DOCUMENT_ID);
+        assertThat(document).isNotNull();
+        rabbitMQProducer.send(document);
+    }
+
 }

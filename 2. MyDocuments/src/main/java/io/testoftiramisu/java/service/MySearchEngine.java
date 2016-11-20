@@ -88,4 +88,14 @@ public class MySearchEngine implements SearchEngine {
         throw new UnsupportedOperationException("find location not yet implemented");
     }
 
+
+    @Override
+    public Document findById(String id) {
+        for (Document document : listAll()) {
+            if (document.getDocumentId().equals(id)) {
+                return document;
+            }
+        }
+        return null;
+    }
 }

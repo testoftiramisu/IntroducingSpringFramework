@@ -31,6 +31,7 @@ public class DocumentWebAppRepository implements DocumentDAO {
         return new JdbcTemplate(this.dataSource).query(query, new DocumentRowMapper());
     }
 
+    @Override
     public Document findById(String id) {
         Document updateDocument = null;
         JdbcTemplate template = new JdbcTemplate(dataSource);

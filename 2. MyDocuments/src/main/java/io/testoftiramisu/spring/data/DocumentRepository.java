@@ -30,6 +30,11 @@ public class DocumentRepository implements DocumentDAO {
 
     @Override
     public void save(Document document) {
+        throw new UnsupportedOperationException("Not yet implemented operation.");
+    }
 
+    @Override
+    public Document findById(String id) {
+        throw new UnsupportedOperationException("Not yet implemented operation.");
     }
 }

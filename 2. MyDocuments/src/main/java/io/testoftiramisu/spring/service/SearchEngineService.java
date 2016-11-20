@@ -38,4 +38,9 @@ public class SearchEngineService implements SearchEngine {
     public List<Document> findByLocation(String location) {
         throw new UnsupportedOperationException("find location not yet implemented");
     }
+
+    @Override
+    public Document findById(String id) {
+        return documentDAO.findById(id);
+    }
 }

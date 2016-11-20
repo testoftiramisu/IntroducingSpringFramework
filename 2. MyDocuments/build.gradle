@@ -59,6 +59,10 @@ dependencies {
     compile group: 'org.apache.activemq', name: 'activemq-core', version: '5.7.0'
     compile group: 'org.springframework', name: 'spring-jms', version: '4.3.3.RELEASE'
 
+    // RabbitMQ support:
+    compile group: 'org.springframework.amqp', name: 'spring-amqp', version: '1.6.5.RELEASE'
+    compile group: 'org.springframework.amqp', name: 'spring-rabbit', version: '1.6.5.RELEASE'
+
 }
 
 test {

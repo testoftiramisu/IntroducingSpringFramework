@@ -5,10 +5,12 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
        xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
     http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.0.xsd
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.1.xsd">
 
     <context:component-scan base-package="io.testoftiramisu.spring"/>
 
@@ -26,6 +28,12 @@
     <jms:listener-container connection-factory="activemqConnectionFactory" acknowledge="auto" container-type="default">
         <jms:listener destination="mydocumentsQueue" ref="JMSConsumer" method="onMessage"/>
     </jms:listener-container>
+
+    <!-- RabbitMQ -->
+    <rabbit:connection-factory id="rabbitConnectionFactory" host="localhost" port="5673"/>
+    <rabbit:admin connection-factory="rabbitConnectionFactory"/>
+    <rabbit:template id="rabbitTemplate" connection-factory="rabbitConnectionFactory" routing-key="mydocumentsQueue"/>
+    <rabbit:queue name="mydocumentsQueue"/>
 
     <!-- JDBC -->
     <jdbc:embedded-database id="dataSource">

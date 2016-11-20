@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface SearchEngine {
     List<Document> findByType(Type documentType);
+
     List<Document> listAll();
+
     List<Document> findByLocation(String location);
+
+    Document findById(String id);
 }
