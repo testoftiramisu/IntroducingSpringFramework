@@ -3,8 +3,10 @@ package io.testoftiramisu.spring.test;
 import io.testoftiramisu.java.model.Document;
 import io.testoftiramisu.java.model.Type;
 import io.testoftiramisu.java.service.SearchEngine;
+import io.testoftiramisu.spring.amqp.RabbitMQConsumer;
 import io.testoftiramisu.spring.amqp.RabbitMQProducer;
 import io.testoftiramisu.spring.jms.JMSProducer;
+import io.testoftiramisu.spring.jms.JMSConsumer;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,8 +58,11 @@ public class MyDocumentsJMSTest {
     @Autowired
     RabbitMQProducer rabbitMQProducer;
 
+    @Autowired
+    RabbitMQConsumer rabbitMQConsumer;
+
     @Test
-    public void testSpringRabbitMQ() {
+    public void testSpringRabbitMQ_1() {
         log.debug("Testing RabbitMQ producer...");
         assertThat(rabbitMQProducer).isNotNull();
 
@@ -66,4 +71,12 @@ public class MyDocumentsJMSTest {
         rabbitMQProducer.send(document);
     }
 
+    @Test
+    public void testSpringRabbitMQ_2() throws InterruptedException {
+        log.debug("Testing RabbitMQ consumer...");
+        assertThat(rabbitMQConsumer).isNotNull();
+
+        //Just wait for the RabbitMQ consumer...
+        Thread.sleep(5000);
+    }
 }

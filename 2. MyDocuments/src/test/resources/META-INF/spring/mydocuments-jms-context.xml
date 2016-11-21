@@ -33,6 +33,9 @@
     <rabbit:connection-factory id="rabbitConnectionFactory" host="localhost" port="5673"/>
     <rabbit:admin connection-factory="rabbitConnectionFactory"/>
     <rabbit:template id="rabbitTemplate" connection-factory="rabbitConnectionFactory" routing-key="mydocumentsQueue"/>
+    <rabbit:listener-container connection-factory="rabbitConnectionFactory">
+        <rabbit:listener ref="rabbitmqConsumer" queues="mydocumentsQueue"/>
+    </rabbit:listener-container>
     <rabbit:queue name="mydocumentsQueue"/>
 
     <!-- JDBC -->
